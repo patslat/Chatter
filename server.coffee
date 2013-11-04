@@ -2,10 +2,9 @@ http = require 'http'
 fs = require 'fs'
 path = require 'path'
 mime = require 'mime'
+router = require './router.js'
+console.log router
 
 server = http.createServer (req, res) ->
-  res.writeHead 200,
-    'Content-Type': 'text/plain'
-  res.end('Hello World\n');
-
+  router.route(req, res)
 server.listen 8080

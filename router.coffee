@@ -1,9 +1,11 @@
+fs = require 'fs'
+
 class Router
   @route : (req, res) ->
-    console.log "routing" + pathname
-    req.pathname = '/public/index.html' if req.pathname == '/'
+    url = req.url.slice(1, req.url.length)
+    url = 'public/index.html' if req.url == '/'
 
-    fs.readFile req.pathname, (err, data) ->
+    fs.readFile url, (err, data) ->
       if err
         console.log "ERROR ", err
         res.writeHead 404,
